@@ -10,7 +10,7 @@ export default class IndexPage extends React.Component {
       <section className="section">
         <div className="container">
           <div className="content">
-            <h1 className="has-text-weight-bold is-size-2">{title}</h1>
+            <h1 className="has-text-weight-bold is-size-3">{title}</h1>
           </div>
           {posts.map(({ node: post }) => (
             <div
@@ -25,19 +25,23 @@ export default class IndexPage extends React.Component {
                 <span> &bull; </span>
                 <small>
                   {post.date} - posted by{' '}
-                  <Link to={`/author/${post.author.slug}`}>
+                  {/* <Link to={`/author/${post.author.slug}`}>
                     {post.author.name}
-                  </Link>
+                  </Link> */}
                 </small>
               </p>
               <div>
                 <div
                   dangerouslySetInnerHTML={{
-                    __html: post.excerpt.replace(/<p class="link-more.*/, ''),
+                    __html: post.excerpt.replace(/<a href=".*/, ''),
                   }}
                 />
-                <Link className="button is-small" to={post.slug}>
-                  Keep Reading →
+                <Link
+                  className="button is-primary is-outlined is-fullwidth"
+                  style={{ marginTop: '1rem' }}
+                  to={post.slug}
+                >
+                  Ver Mas
                 </Link>
               </div>
             </div>
